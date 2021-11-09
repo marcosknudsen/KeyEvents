@@ -61,30 +61,30 @@ ioHook.on('keydown',(msg)=>{
                 console.log("ERROR: OBS not connected")
             }
         }else if (msg["keycode"]===79){//CTRL+NP1
-            ChangeOn(1)
+            switchON(1)
         }else if (msg["keycode"]===80){//CTRL+NP2
-            controlLight(1,undefined,[0.2511,0.2701])
+            changeLights(1,undefined,[0.2511,0.2701])
         }else if (msg["keycode"]===81){//CTRL+NP3
-            controlLight(1,undefined,constructColor(255,255,255))
-            controlLight(3,undefined,constructColor(255,255,255))
+            changeLights(1,undefined,constructColor(255,255,255))
+            changeLights(3,undefined,constructColor(255,255,255))
         }else if (msg["keycode"]===75){//CTRL+NP4
-            controlLight(1,undefined,constructColor(201,22,22))
-            controlLight(3,undefined,constructColor(201,22,22))
+            changeLights(1,undefined,constructColor(201,22,22))
+            changeLights(3,undefined,constructColor(201,22,22))
         }else if (msg["keycode"]===76){//CTRL+NP5
-            controlLight(1,undefined,constructColor(0,255,0))
-            controlLight(3,undefined,constructColor(0,255,0))
+            changeLights(1,undefined,constructColor(0,255,0))
+            changeLights(3,undefined,constructColor(0,255,0))
         }else if (msg["keycode"]===77){//CTRL+NP6
-            controlLight(1,undefined,constructColor(0,0,255))
-            controlLight(3,undefined,constructColor(0,0,255))
+            changeLights(1,undefined,constructColor(0,0,255))
+            changeLights(3,undefined,constructColor(0,0,255))
         }else if (msg["keycode"]===71){//CTRL+NP7
-            controlLight(1,undefined,constructColor(5,180,255))
-            controlLight(3,undefined,constructColor(5,180,255))
+            changeLights(1,undefined,constructColor(5,180,255))
+            changeLights(3,undefined,constructColor(5,180,255))
         }else if (msg["keycode"]===72){//CTRL+NP8
-            controlLight(1,undefined,constructColor(81,23,230))
-            controlLight(3,undefined,constructColor(81,23,230))
+            changeLights(1,undefined,constructColor(81,23,230))
+            changeLights(3,undefined,constructColor(81,23,230))
         }else if (msg["keycode"]===73){//CTRL+NP9
-            controlLight(3,undefined,[0.4574,0.41])
-            controlLight(1,undefined,[0.4574,0.41])
+            changeLights(3,undefined,[0.4574,0.41])
+            changeLights(1,undefined,[0.4574,0.41])
         }
     // SHIFT+NP
     }else if (ctrlKey===false&&altKey===false&&shiftKey===false){//SHIFT+NP0
@@ -285,19 +285,7 @@ ioHook.on('keydown',(msg)=>{
     }
 })
 
-function obsFilter(source, filter, mode){
-    obs.send('SetSourceFilterVisibility', {"sourceName": source, "filterName": filter, "filterEnabled": mode})
-}
-
-function obsFilterDelaySet(source,filter,delay){
-    obs.send("SetSourceFilterSettings", {"sourceName": source, "filterName":filter,filterSettings:{'delay_ms':delay}})
-}
-
-function obsSourceSettingsSet(source){
-    obs.send("SetSourceSettings", {"sourceName": "cam",sourceSettings:{flip_vertically:false}})
-}
-
-async function controlLight(lightID,on,xy,bri){
+async function changeLights(lightID,on,xy,bri){
     try{
         return await axios.put(
             `${config.HUEApi}/lights/${lightID}/state`,
@@ -310,10 +298,10 @@ async function controlLight(lightID,on,xy,bri){
     }
 }
 
-async function ChangeOn(lightID){
+async function switchON(lightID){
     const data=await axios.get(`${config.HUEApi}/lights/`)
-    const ret=data.data[`${lightID}`].state.on
-    controlLight(lightID,!ret)
+    const on=data.data[`${lightID}`].state.on
+    changeLights(lightID,!on)
 }
 
 function constructColor(r,g,b){
