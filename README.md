@@ -13,5 +13,5 @@ I just installed *OBS Websockets* for connecting with my obs client (https://git
 
 Hue Lights:
 
-I used Axios (https://github.com/axios/axios) for control Hue Api (https://developers.meethue.com/), then I code some methods for make it easyest, like *switchON* for switch lights,
+I used *Axios* (https://github.com/axios/axios) for control *Hue Api* (https://developers.meethue.com/), then I code some methods for make it easyest, like *switchON* for switch lights,
 *changeLights* for change color of lights, then I created *constructColor* method with *Color-RNA* (https://github.com/nullice/ColorRNA) for change into color formats.
