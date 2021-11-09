@@ -9,9 +9,9 @@ I created *exec* method for opening any file, this needs Child Processes.
 
 OBS:
 
-I just installed *OBS Websockets* for connecting with my obs client (https://github.com/Palakis/obs-websocket/releases/tag/4.9.1)
+I just installed [*OBS Websockets*](https://github.com/Palakis/obs-websocket/releases/tag/4.9.1) for connecting with my obs client.
 
 Hue Lights:
 
-I used *Axios* (https://github.com/axios/axios) for control *Hue Api* (https://developers.meethue.com/), then I code some methods for make it easyest, like *switchON* for switch lights,
-*changeLights* for change color of lights, then I created *constructColor* method with *Color-RNA* (https://github.com/nullice/ColorRNA) for change into color formats.
+I used [*Axios*](https://github.com/axios/axios) for control [*Hue Api*](https://developers.meethue.com/), then I code some methods for make it easyest, like *switchON* for switch lights,
+*changeLights* for change color of lights, then I created *constructColor* method with [*Color-RNA*](https://github.com/nullice/ColorRNA) for change into color formats.
